@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+/* styles override */
+
+.my-drawer {
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &.am-drawer-left {
+    min-height: unset !important;
+    // height: calc(100vh- (45px));
+    height: -webkit-calc(100vh - 45px);
+  }
+
+  .am-drawer-sidebar {
+    background-color: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .am-list {
+    width: 300px;
+    padding: 0;
+
+    .am-list-body {
+      height: 100%;
+    }
+  }
+
+  .am-drawer-content {
+    padding: 10px !important;
+  }
+}
