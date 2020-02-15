@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import getApolloClient from "./apolloClient";
-import AppComponent from "./component";
+import AppComponent from "./App";
 
 export default function App() {
   const [client, setClient] = useState(null);
