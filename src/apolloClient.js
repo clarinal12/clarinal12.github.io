@@ -1,11 +1,11 @@
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { CachePersistor } from "apollo-cache-persist";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { CachePersistor } from 'apollo-cache-persist';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
-const API_HOST = "http://api.admin.development.aonewallet.com/graphql";
-const SCHEMA_VERSION = "1";
-const SCHEMA_VERSION_KEY = "apollo-schema-version";
+const API_HOST = 'http://api.admin.development.aonewallet.com/graphql';
+const SCHEMA_VERSION = '1';
+const SCHEMA_VERSION_KEY = 'apollo-schema-version';
 
 const getApolloClient = async () => {
   const httpLink = new HttpLink({ uri: API_HOST });
@@ -13,7 +13,7 @@ const getApolloClient = async () => {
 
   const persistor = new CachePersistor({
     cache,
-    storage: window.localStorage
+    storage: window.localStorage,
   });
 
   const currentVersion = window.localStorage.getItem(SCHEMA_VERSION_KEY);
