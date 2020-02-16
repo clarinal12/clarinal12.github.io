@@ -1,32 +1,19 @@
 import React, { useState } from 'react';
-import { TabBar, WingBlank } from 'antd-mobile';
+import { TabBar, WingBlank, NavBar, Icon } from 'antd-mobile';
+import { tabs } from './constants';
 
 const Main = () => {
-  const [state, setState] = useState({ selectedTab: 'DASHBOARD' });
-  const tabs = [
-    {
-      id: 'DASHBOARD',
-      name: 'Dashboard',
-    },
-    {
-      id: 'SERVICES',
-      name: 'Services',
-    },
-    {
-      id: 'RECORDS',
-      name: 'Records',
-    },
-    {
-      id: 'ACCOUNT',
-      name: 'Account',
-    },
-  ];
+  const [state, setState] = useState({ selectedTab: tabs[0] });
+
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: 'calc(100vh - 45px)' }}>
+      <NavBar mode="dark" rightContent={[<Icon key="1" type="ellipsis" />]}>
+        {state.selectedTab.name}
+      </NavBar>
       <TabBar
         unselectedTintColor="#949494"
         tintColor="#33A3F4"
-        barTintColor="white"
+        barTintColor="black"
         tabBarPosition="bottom"
         prerenderingSiblingsNumber={0}
       >
@@ -42,11 +29,11 @@ const Main = () => {
             }}
             title={tab.name}
             key={key}
-            selected={tab.id === state.selectedTab}
-            onPress={() => setState({ ...state, selectedTab: tab.id })}
+            selected={tab.id === state.selectedTab.id}
+            onPress={() => setState({ ...state, selectedTab: tab })}
           >
             <WingBlank>
-              <h3>{tab.name} coming soon...</h3>
+              {tab.content || <h3>{tab.name} coming soon...</h3>}
             </WingBlank>
           </TabBar.Item>
         ))}

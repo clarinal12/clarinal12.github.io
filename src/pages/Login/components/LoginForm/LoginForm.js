@@ -24,7 +24,7 @@ const Login = () => {
   const { handleSubmit, setFieldValue, values, errors } = formik;
 
   return (
-    <form>
+    <form style={{ width: '100%' }}>
       <InputItem
         clear
         placeholder="Username"

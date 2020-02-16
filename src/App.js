@@ -16,7 +16,7 @@ const App = props => {
   if (loading)
     return (
       <Flex justify="center" style={{ minHeight: '100vh' }}>
-        <ActivityIndicator toast />
+        <ActivityIndicator size="large" />
       </Flex>
     );
   return (
