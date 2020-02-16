@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, InputItem, WhiteSpace, Toast } from 'antd-mobile';
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import validationSchema from './validationSchema';
 
 const Login = () => {
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -11,7 +13,9 @@ const Login = () => {
     },
     onSubmit: values => {
       console.log({ values });
-      Toast.fail('Login Failed!', 2);
+      Toast.success('Login successful!', 2);
+      localStorage.setItem('accessToken', 'sampleToken');
+      history.push('/');
     },
     enableReinitialize: true,
     validationSchema,
