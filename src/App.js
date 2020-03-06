@@ -1,36 +1,41 @@
 import React from 'react';
+
+// libraries
 import { shape, bool } from 'prop-types';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.scss';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks';
-import { ActivityIndicator, Flex } from 'antd-mobile';
-import requireAuth from './utils/requireAuth';
-import Main from './pages/Main';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+
+// / Hooks
+import { ProvideAuth, useAuth } from 'hooks/useAuth';
+
+// styles
+import 'onsenui/css/onsenui.css';
+import 'App.scss';
+
+// utils
+// import requireAuth from './utils/requireAuth';
+
+// components
+import Navigation from './pages/Navigation';
+import Authentication from './pages/Authentication';
+
+// const ProtectedPage = ({ component, ...rest }) => {
+//   const { accessToken } = useAuth();
+//   const page = accessToken ? Main : Authentication;
+//   return React.createElement(page, props: { ...rest }));
+// };
 
 const App = props => {
   const { client, loading } = props;
 
-  if (loading)
-    return (
-      <Flex justify="center" style={{ minHeight: '100vh' }}>
-        <ActivityIndicator size="large" />
-      </Flex>
-    );
+  if (loading) return <h3>Loading...</h3>;
+
   return (
     <ApolloHooksProvider client={client}>
       <ApolloProvider client={client}>
-        <Router>
-          <>
-            <Switch>
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/" component={requireAuth(Main)} />
-            </Switch>
-          </>
-        </Router>
+        <ProvideAuth>
+          <Navigation />
+        </ProvideAuth>
       </ApolloProvider>
     </ApolloHooksProvider>
   );
